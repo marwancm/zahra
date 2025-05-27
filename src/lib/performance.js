@@ -1,80 +1,124 @@
-import React, { memo, lazy, Suspense } from 'react';
+/**
+ * Performance utilities for optimizing React components and application performance
+ */
+
+import { useEffect, useState, useCallback } from 'react';
 
 /**
- * Memoizes a component to prevent unnecessary re-renders
- * @param {React.ComponentType} Component - The component to memoize
- * @param {Function} propsAreEqual - Optional comparison function for props
- * @returns {React.MemoExoticComponent} Memoized component
+ * Custom hook for lazy loading images
+ * @param {string} src - Image source URL
+ * @param {string} placeholder - Placeholder image URL
+ * @returns {string} - The image source to use
  */
-export const memoize = (Component, propsAreEqual) => {
-  return memo(Component, propsAreEqual);
-};
-
-/**
- * Creates a lazy-loaded component with a fallback
- * @param {Function} importFunc - Import function that returns a promise
- * @param {React.ReactNode} fallback - Fallback UI while loading
- * @returns {React.LazyExoticComponent} Lazy loaded component
- */
-export const lazyLoad = (importFunc, fallback = null) => {
-  const LazyComponent = lazy(importFunc);
-  return (props) => (
-    <Suspense fallback={fallback}>
-      <LazyComponent {...props} />
-    </Suspense>
-  );
-};
-
-/**
- * Debounces a function call
- * @param {Function} func - The function to debounce
- * @param {number} wait - Wait time in milliseconds
- * @returns {Function} Debounced function
- */
-export const debounce = (func, wait = 300) => {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
+export function useLazyImage(src, placeholder = '/placeholder-image.jpg') {
+  const [imageSrc, setImageSrc] = useState(placeholder);
+  
+  useEffect(() => {
+    // Create new image object
+    const img = new Image();
+    img.src = src;
+    
+    img.onload = () => {
+      setImageSrc(src);
     };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-};
+    
+    return () => {
+      img.onload = null;
+    };
+  }, [src]);
+  
+  return imageSrc;
+}
 
 /**
- * Creates an optimized image URL with width and quality parameters
- * @param {string} url - Original image URL
- * @param {number} width - Desired width
- * @param {number} quality - Image quality (1-100)
- * @returns {string} Optimized image URL
+ * Custom hook for debouncing function calls
+ * @param {Function} fn - Function to debounce
+ * @param {number} delay - Delay in milliseconds
+ * @returns {Function} - Debounced function
  */
-export const optimizeImageUrl = (url, width = 400, quality = 80) => {
-  if (!url) return '';
+export function useDebounce(fn, delay) {
+  const [timeoutId, setTimeoutId] = useState(null);
   
-  // For external URLs that support image optimization (like Cloudinary, Imgix, etc.)
-  if (url.includes('cloudinary.com')) {
-    return url.replace('/upload/', `/upload/w_${width},q_${quality}/`);
-  }
-  
-  // For local images, just return the original URL
-  return url;
-};
-
-/**
- * Throttles a function call
- * @param {Function} func - The function to throttle
- * @param {number} limit - Throttle time in milliseconds
- * @returns {Function} Throttled function
- */
-export const throttle = (func, limit = 300) => {
-  let inThrottle;
-  return function(...args) {
-    if (!inThrottle) {
-      func.apply(this, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
+  const debouncedFn = useCallback((...args) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
     }
+    
+    const id = setTimeout(() => {
+      fn(...args);
+    }, delay);
+    
+    setTimeoutId(id);
+  }, [fn, delay, timeoutId]);
+  
+  useEffect(() => {
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [timeoutId]);
+  
+  return debouncedFn;
+}
+
+/**
+ * Utility function to preload critical images
+ * @param {Array<string>} imageUrls - Array of image URLs to preload
+ */
+export function preloadImages(imageUrls) {
+  if (!Array.isArray(imageUrls)) return;
+  
+  imageUrls.forEach(url => {
+    const img = new Image();
+    img.src = url;
+  });
+}
+
+/**
+ * Custom hook for intersection observer (lazy loading)
+ * @param {Object} options - IntersectionObserver options
+ * @returns {[React.RefObject, boolean]} - Ref and whether element is visible
+ */
+export function useIntersectionObserver(options = {}) {
+  const [ref, setRef] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    if (!ref) return;
+    
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsVisible(entry.isIntersecting);
+    }, options);
+    
+    observer.observe(ref);
+    
+    return () => {
+      observer.disconnect();
+    };
+  }, [ref, options]);
+  
+  return [setRef, isVisible];
+}
+
+/**
+ * Memoize expensive function results
+ * @param {Function} fn - Function to memoize
+ * @returns {Function} - Memoized function
+ */
+export function memoize(fn) {
+  const cache = new Map();
+  
+  return (...args) => {
+    const key = JSON.stringify(args);
+    
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    
+    const result = fn(...args);
+    cache.set(key, result);
+    
+    return result;
   };
-};
+}
