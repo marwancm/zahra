@@ -197,4 +197,33 @@ export default defineConfig({
 			'@': path.resolve(__dirname, './src'),
 		},
 	},
+	build: {
+		minify: 'terser',
+		terserOptions: {
+			compress: {
+				drop_console: true,
+				drop_debugger: true,
+			},
+		},
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					vendor: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
+					ui: [
+						'@radix-ui/react-alert-dialog',
+						'@radix-ui/react-avatar',
+						'@radix-ui/react-checkbox',
+						'@radix-ui/react-dialog',
+						'@radix-ui/react-dropdown-menu',
+						'@radix-ui/react-label',
+						'@radix-ui/react-slider',
+						'@radix-ui/react-slot',
+						'@radix-ui/react-tabs',
+						'@radix-ui/react-toast'
+					],
+				},
+			},
+		},
+		chunkSizeWarningLimit: 1000,
+	},
 });
