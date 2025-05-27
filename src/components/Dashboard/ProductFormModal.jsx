@@ -159,13 +159,27 @@ import React from 'react';
 
 
       return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[70] p-4">
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[70] p-4"
+          role="dialog" 
+          aria-modal="true" 
+          aria-labelledby="product-form-modal-title"
+        >
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white p-8 rounded-lg shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
+            className="bg-white p-8 rounded-lg shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto relative"
           >
-            <h2 className="text-2xl font-bold mb-6" style={{ color: '#8f436a' }}>
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => setIsOpen(false)} 
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
+              aria-label="Close"
+            >
+              <X size={20} aria-hidden="true" />
+            </Button>
+            <h2 id="product-form-modal-title" className="text-2xl font-bold mb-6" style={{ color: '#8f436a' }}>
               {currentProduct ? 'تعديل المنتج' : 'إضافة منتج جديد'}
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -202,8 +216,9 @@ import React from 'react';
                         size="icon" 
                         className="absolute top-0 right-0 h-6 w-6 p-1"
                         onClick={() => removeImage(img.isExisting ? productForm.image_urls.indexOf(img.url) : selectedFiles.findIndex(f => f.name === img.name), img.isExisting)}
+                        aria-label="Remove image"
                       >
-                        <X size={14} />
+                        <X size={14} aria-hidden="true" />
                       </Button>
                     </div>
                   ))}

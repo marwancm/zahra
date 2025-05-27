@@ -132,7 +132,7 @@ import React from 'react';
           
           {showLoadingState ? (
             <div className="flex justify-center items-center min-h-[40vh]">
-              <Loader2 className="h-12 w-12 animate-spin text-primary" />
+              <Loader2 className="h-12 w-12 animate-spin text-primary" aria-hidden="true" />
               <p className="ml-4 rtl:mr-4 text-xl text-gray-600">جاري تحميل بيانات لوحة التحكم...</p>
             </div>
           ) : (

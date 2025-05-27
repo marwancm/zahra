@@ -40,6 +40,7 @@ import { motion } from 'framer-motion';
                   <img  
                     src={displayImage} 
                     alt={product.name} 
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110" />
                 </div>
               </Link>

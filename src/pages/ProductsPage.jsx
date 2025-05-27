@@ -153,7 +153,7 @@ const ProductsPage = () => {
           className="flex items-center gap-2 border-primary text-primary"
           onClick={() => setIsMobileFilterOpen(true)}
         >
-          <Filter size={16} />
+          <Filter size={16} aria-hidden="true" />
           الفلاتر
         </Button>
       </div>
@@ -164,7 +164,7 @@ const ProductsPage = () => {
           <div className="absolute right-0 top-0 h-full w-4/5 max-w-sm bg-background overflow-y-auto p-4">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold text-brand-title">الفلاتر</h2>
-              <Button variant="ghost" size="sm" onClick={() => setIsMobileFilterOpen(false)}>
+              <Button variant="ghost" size="sm" onClick={() => setIsMobileFilterOpen(false)} aria-label="Close filters">
                 <X size={20} />
               </Button>
             </div>
@@ -282,20 +282,27 @@ const ProductsPage = () => {
         </aside>
 
         <main className="w-full md:w-3/4">
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold mb-4 hidden md:block text-right text-brand-title">جميع العطور</h1>
-            <div className="relative">
+          <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold text-brand-title mb-4 sm:mb-0 hidden md:block">جميع العطور</h1>
+            <div className="relative w-full sm:w-auto sm:max-w-xs lg:max-w-sm">
               <Input 
                 type="search" 
-                placeholder="ابحث بالاسم, الوصف, الفئة ..." 
-                value={searchTerm}
+                placeholder="ابحث بالاسم، الوصف..." 
+                value={searchTerm} 
                 onChange={handleSearchChange}
-                className="pl-10 rtl:pr-10 py-3 text-base rounded-lg border-border focus:border-primary focus:ring-primary bg-secondary/50 w-full"
+                aria-label="Search products"
+                className="w-full pl-10 rtl:pr-10 py-2 border-border focus:border-primary focus:ring-primary rounded-full bg-background" 
               />
-              <Search className="absolute left-3 rtl:right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Search className="absolute left-3 rtl:right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               {searchTerm && (
-                <Button variant="ghost" size="icon" className="absolute left-10 rtl:right-10 top-1/2 transform -translate-y-1/2 h-7 w-7" onClick={clearSearch}>
-                  <XCircle className="h-5 w-5 text-muted-foreground hover:text-destructive" />
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="absolute right-3 rtl:left-3 top-1/2 transform -translate-y-1/2 p-1 h-auto"
+                  onClick={clearSearch}
+                  aria-label="Clear search"
+                >
+                  <XCircle size={16} className="text-muted-foreground hover:text-destructive" />
                 </Button>
               )}
             </div>

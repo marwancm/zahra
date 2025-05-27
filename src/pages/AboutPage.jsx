@@ -34,8 +34,8 @@ import React from 'react';
               transition={{ duration: 0.5, delay: 0.4 }}
               className="p-6 bg-gradient-to-br from-[#a65b86] to-[#8f436a] text-white rounded-lg shadow-md"
             >
-              <Star size={40} className="mx-auto mb-3" />
-              <h3 className="text-xl font-semibold mb-2">جودة عالية</h3>
+              <Star size={40} className="mx-auto mb-3" aria-hidden="true" />
+              <h2 className="text-xl font-semibold mb-2">جودة عالية</h2>
               <p className="text-sm">نختار أجود المكونات لضمان عطور تدوم طويلاً.</p>
             </motion.div>
             <motion.div 
@@ -44,8 +44,8 @@ import React from 'react';
               transition={{ duration: 0.5, delay: 0.6 }}
               className="p-6 bg-gradient-to-br from-[#a65b86] to-[#8f436a] text-white rounded-lg shadow-md"
             >
-              <ShoppingBag size={40} className="mx-auto mb-3" />
-              <h3 className="text-xl font-semibold mb-2">تشكيلة واسعة</h3>
+              <ShoppingBag size={40} className="mx-auto mb-3" aria-hidden="true" />
+              <h2 className="text-xl font-semibold mb-2">تشكيلة واسعة</h2>
               <p className="text-sm">مجموعة متنوعة تناسب جميع الأذواق والمناسبات.</p>
             </motion.div>
             <motion.div 
@@ -54,8 +54,8 @@ import React from 'react';
               transition={{ duration: 0.5, delay: 0.8 }}
               className="p-6 bg-gradient-to-br from-[#a65b86] to-[#8f436a] text-white rounded-lg shadow-md"
             >
-              <MapPin size={40} className="mx-auto mb-3" />
-              <h3 className="text-xl font-semibold mb-2">صنع في عُمان</h3>
+              <MapPin size={40} className="mx-auto mb-3" aria-hidden="true" />
+              <h2 className="text-xl font-semibold mb-2">صنع في عُمان</h2>
               <p className="text-sm">نفخر بتقديم منتجات مستوحاة من تراثنا الغني.</p>
             </motion.div>
           </div>

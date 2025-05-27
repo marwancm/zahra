@@ -101,6 +101,8 @@ import React from 'react';
                 className="w-full h-full object-cover object-center" 
                 alt={slide.title || "Banner image"}
                 src={slide.image_url || "https://placehold.co/1920x1080/a65b86/ffffff?text=Default+Banner"} 
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchpriority={index === 0 ? "high" : "auto"}
               />
               <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center p-6">
                 <motion.h1 
@@ -127,7 +129,7 @@ import React from 'react';
                   transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
                 >
                   <Button size="lg" className="bg-primary text-primary-foreground hover:bg-brand-primary-hover transition-all duration-300 transform hover:scale-105 shadow-medium px-10 py-6 text-lg" asChild>
-                    <Link to={slide.link_to || '/products'}>اكتشف الآن <ChevronRight className="mr-2 rtl:ml-2 h-5 w-5" /></Link>
+                    <Link to={slide.link_to || '/products'}>اكتشف الآن <ChevronRight className="mr-2 rtl:ml-2 h-5 w-5" aria-hidden="true" /></Link>
                   </Button>
                 </motion.div>
               </div>
@@ -155,7 +157,7 @@ import React from 'react';
               initial={{opacity: 0, y: 20}} whileInView={{opacity: 1, y: 0}} transition={{delay: 0.1}}
               className="flex flex-col items-center p-6 bg-background rounded-xl shadow-subtle hover:shadow-medium transition-shadow"
             >
-              <Gift size={48} className="text-primary mb-4" />
+              <Gift size={48} className="text-primary mb-4" aria-hidden="true" />
               <h3 className="text-xl font-semibold text-brand-title mb-2">هدايا مميزة</h3>
               <p className="text-muted-foreground text-sm">عطور فاخرة تصلح لأجمل الهدايا في جميع المناسبات.</p>
             </motion.div>
@@ -163,7 +165,7 @@ import React from 'react';
               initial={{opacity: 0, y: 20}} whileInView={{opacity: 1, y: 0}} transition={{delay: 0.2}}
               className="flex flex-col items-center p-6 bg-background rounded-xl shadow-subtle hover:shadow-medium transition-shadow"
             >
-              <ShieldCheck size={48} className="text-primary mb-4" />
+              <ShieldCheck size={48} className="text-primary mb-4" aria-hidden="true" />
               <h3 className="text-xl font-semibold text-brand-title mb-2">جودة مضمونة</h3>
               <p className="text-muted-foreground text-sm">نضمن أصالة وجودة جميع منتجاتنا 100%.</p>
             </motion.div>
@@ -171,7 +173,7 @@ import React from 'react';
               initial={{opacity: 0, y: 20}} whileInView={{opacity: 1, y: 0}} transition={{delay: 0.3}}
               className="flex flex-col items-center p-6 bg-background rounded-xl shadow-subtle hover:shadow-medium transition-shadow"
             >
-              <Truck size={48} className="text-primary mb-4" />
+              <Truck size={48} className="text-primary mb-4" aria-hidden="true" />
               <h3 className="text-xl font-semibold text-brand-title mb-2">توصيل سريع</h3>
               <p className="text-muted-foreground text-sm">توصيل سريع وآمن لجميع مناطق السلطنة.</p>
             </motion.div>
@@ -237,6 +239,7 @@ import React from 'react';
                       className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out" 
                       alt={category.name} 
                       src={category.image_url} 
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10 flex flex-col items-center justify-end p-8">
                       <h3 className="text-3xl font-semibold text-white mb-4 text-center" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.7)'}}>{category.name}</h3>

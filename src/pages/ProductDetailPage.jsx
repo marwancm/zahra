@@ -151,6 +151,9 @@ const ProductDetailPage = () => {
                 src={displayImages[currentImageIndex]}
                 alt={product.name}
                 className="max-w-full max-h-[90vh] object-contain mx-auto"
+                fetchpriority="high"
+                loading="eager"
+                onClick={() => setIsModalOpen(true)}
               />
               
               <button
@@ -186,6 +189,8 @@ const ProductDetailPage = () => {
               key={currentImageIndex}
               transition={{ duration: 0.3 }}
               onClick={() => setIsModalOpen(true)}
+              fetchpriority="high"
+              loading="eager"
             />
             
             {displayImages.length > 1 && (
@@ -196,8 +201,9 @@ const ProductDetailPage = () => {
                     e.stopPropagation();
                     handlePrevImage();
                   }}
+                  aria-label="Previous image"
                 >
-                  <ChevronLeft size={18} />
+                  <ChevronLeft size={18} aria-hidden="true" />
                 </button>
                 <button 
                   className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-primary p-1.5 md:p-2 rounded-full shadow-md z-10"
@@ -205,8 +211,9 @@ const ProductDetailPage = () => {
                     e.stopPropagation();
                     handleNextImage();
                   }}
+                  aria-label="Next image"
                 >
-                  <ChevronRight size={18} />
+                  <ChevronRight size={18} aria-hidden="true" />
                 </button>
               </>
             )}
@@ -252,24 +259,18 @@ const ProductDetailPage = () => {
             <p>{product.description || 'لا يوجد وصف متوفر لهذا المنتج حاليًا.'}</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pt-2 mb-4 md:mb-6">
-            {product.category && (
-              <div className="flex items-center text-muted-foreground">
-                <Layers size={18} className="mr-2 rtl:ml-2 text-primary" />
-                <span className="font-medium text-sm md:text-base">الفئة:</span>
-                <Badge variant="secondary" className="ml-2 rtl:mr-2 text-xs md:text-sm">
-                  {product.category}
-                </Badge>
-              </div>
-            )}
+          <div className="flex flex-wrap items-center gap-2 mb-3 md:mb-5">
             {product.perfume_type && (
-              <div className="flex items-center text-muted-foreground">
-                <Tag size={18} className="mr-2 rtl:ml-2 text-primary" />
-                <span className="font-medium text-sm md:text-base">اسم العطر:</span>
-                <Badge variant="secondary" className="ml-2 rtl:mr-2 text-xs md:text-sm">
-                  {product.perfume_type}
-                </Badge>
-              </div>
+              <Badge variant="outline" className="border-primary/70 text-primary text-sm flex items-center">
+                <Layers size={18} className="mr-2 rtl:ml-2 text-primary" aria-hidden="true" />
+                {product.perfume_type}
+              </Badge>
+            )}
+            {product.category && (
+              <Badge variant="secondary" className="text-sm flex items-center">
+                <Tag size={18} className="mr-2 rtl:ml-2 text-primary" aria-hidden="true" />
+                {product.category}
+              </Badge>
             )}
           </div>
           

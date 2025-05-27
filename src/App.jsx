@@ -13,9 +13,9 @@ import React, { useState, useEffect } from 'react';
     import { Phone, MessageCircle } from 'lucide-react';
 
     const TopBar = () => (
-  <div style={{ backgroundColor: '#d9d3d5', color: '#736f70' }} className="py-0.5 md:py-2 px-2 md:px-4 text-center w-full">
+  <div style={{ backgroundColor: '#d9d3d5', color: '#333333' }} className="py-0.5 md:py-2 px-2 md:px-4 text-center w-full">
     <div className="container mx-auto flex items-center justify-center">
-      <Phone size={10} className="ml-1 md:ml-2 rtl:mr-1 rtl:md:mr-2" />
+      <Phone size={10} className="ml-1 md:ml-2 rtl:mr-1 rtl:md:mr-2" aria-label="Phone" />
       <span className="text-[10px] md:text-sm" data-component-name="TopBar">اطلب الآن 76396934 - التوصيل لأي مكان داخل سلطنة عمان</span>
     </div>
   </div>
@@ -62,10 +62,11 @@ import React, { useState, useEffect } from 'react';
             <TopBar />
             <div className="relative">
               {showWhatsApp && (
-                <a 
-                  href="https://wa.me/+96876347266" 
-                  target="_blank" 
+                <a
+                  href="https://wa.me/+96876347266"
+                  target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Chat on WhatsApp"
                   className="fixed bottom-6 left-6 z-50 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center"
                   style={{ width: '50px', height: '50px' }}
                 >

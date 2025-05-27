@@ -7,10 +7,10 @@ import React from 'react';
           <table className="w-full min-w-max text-right">
             <thead className="bg-gray-100">
               <tr>
-                <th className="p-4 font-semibold text-gray-600">الصورة</th>
-                <th className="p-4 font-semibold text-gray-600">العنوان</th>
-                <th className="p-4 font-semibold text-gray-600">نشط</th>
-                <th className="p-4 font-semibold text-gray-600">إجراءات</th>
+                <th scope="col" className="p-4 font-semibold text-gray-600">الصورة</th>
+                <th scope="col" className="p-4 font-semibold text-gray-600">العنوان</th>
+                <th scope="col" className="p-4 font-semibold text-gray-600">نشط</th>
+                <th scope="col" className="p-4 font-semibold text-gray-600">إجراءات</th>
               </tr>
             </thead>
             <tbody>

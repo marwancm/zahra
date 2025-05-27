@@ -68,6 +68,7 @@ import React, { useState, useEffect, useRef } from 'react';
           <button 
             type="button" 
             onClick={handleSearchIconClick}
+            aria-label="Search"
             className="absolute left-1 rtl:right-1 top-1/2 transform -translate-y-1/2 p-0.5 bg-transparent border-none cursor-pointer"
           >
             <Search className="h-3.5 w-3.5 text-muted-foreground" />
@@ -111,7 +112,11 @@ import React, { useState, useEffect, useRef } from 'react';
                 <SearchBar />
               </div>
               <div className="md:hidden flex items-center">
-                <Button variant="ghost" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                <Button 
+                  variant="ghost" 
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                >
                   {isMobileMenuOpen ? <X className="h-7 w-7 text-primary" /> : <Menu className="h-7 w-7 text-primary" />}
                 </Button>
               </div>
