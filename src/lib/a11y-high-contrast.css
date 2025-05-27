@@ -1,0 +1,233 @@
+/**
+ * High Contrast Accessibility CSS
+ * 
+ * This stylesheet provides high contrast styles to improve accessibility
+ * without modifying your existing code.
+ */
+
+/* Apply high contrast styles when the class is added to the body */
+.a11y-high-contrast {
+  /* Ensure text has sufficient contrast */
+  --text-color: #000000;
+  --background-color: #ffffff;
+  --link-color: #0000EE;
+  --link-visited-color: #551A8B;
+  --primary-color: #0057b7;
+  --secondary-color: #121212;
+  --error-color: #d32f2f;
+  --success-color: #2e7d32;
+  --border-color: #000000;
+}
+
+/* Base text color */
+.a11y-high-contrast,
+.a11y-high-contrast p,
+.a11y-high-contrast h1,
+.a11y-high-contrast h2,
+.a11y-high-contrast h3,
+.a11y-high-contrast h4,
+.a11y-high-contrast h5,
+.a11y-high-contrast h6,
+.a11y-high-contrast span,
+.a11y-high-contrast label {
+  color: var(--text-color) !important;
+}
+
+/* Background color */
+.a11y-high-contrast,
+.a11y-high-contrast main,
+.a11y-high-contrast article,
+.a11y-high-contrast section,
+.a11y-high-contrast aside,
+.a11y-high-contrast div {
+  background-color: var(--background-color) !important;
+}
+
+/* Link colors */
+.a11y-high-contrast a {
+  color: var(--link-color) !important;
+  text-decoration: underline !important;
+}
+
+.a11y-high-contrast a:visited {
+  color: var(--link-visited-color) !important;
+}
+
+.a11y-high-contrast a:hover,
+.a11y-high-contrast a:focus {
+  color: var(--primary-color) !important;
+  text-decoration: none !important;
+}
+
+/* Button styles */
+.a11y-high-contrast button,
+.a11y-high-contrast [role="button"] {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+  border: 2px solid var(--border-color) !important;
+  font-weight: bold !important;
+}
+
+.a11y-high-contrast button:hover,
+.a11y-high-contrast [role="button"]:hover,
+.a11y-high-contrast button:focus,
+.a11y-high-contrast [role="button"]:focus {
+  background-color: #003a7a !important;
+  outline: 3px solid #4299e1 !important;
+}
+
+/* Form controls */
+.a11y-high-contrast input,
+.a11y-high-contrast select,
+.a11y-high-contrast textarea {
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
+  border: 2px solid var(--border-color) !important;
+}
+
+.a11y-high-contrast input:focus,
+.a11y-high-contrast select:focus,
+.a11y-high-contrast textarea:focus {
+  outline: 3px solid #4299e1 !important;
+  border-color: #4299e1 !important;
+}
+
+/* Placeholder text */
+.a11y-high-contrast ::placeholder {
+  color: #555555 !important;
+  opacity: 1 !important;
+}
+
+/* Focus styles */
+.a11y-high-contrast *:focus {
+  outline: 3px solid #4299e1 !important;
+  outline-offset: 2px !important;
+}
+
+/* Error states */
+.a11y-high-contrast .error,
+.a11y-high-contrast .text-error,
+.a11y-high-contrast .text-destructive {
+  color: var(--error-color) !important;
+  font-weight: bold !important;
+}
+
+/* Success states */
+.a11y-high-contrast .success,
+.a11y-high-contrast .text-success {
+  color: var(--success-color) !important;
+  font-weight: bold !important;
+}
+
+/* Tables */
+.a11y-high-contrast table {
+  border-collapse: collapse !important;
+  border: 2px solid var(--border-color) !important;
+}
+
+.a11y-high-contrast th {
+  background-color: #f0f0f0 !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+  font-weight: bold !important;
+}
+
+.a11y-high-contrast td {
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* Lists */
+.a11y-high-contrast ul,
+.a11y-high-contrast ol {
+  padding-right: 2rem !important;
+}
+
+.a11y-high-contrast li {
+  margin-bottom: 0.5rem !important;
+}
+
+/* Cards and containers */
+.a11y-high-contrast .card,
+.a11y-high-contrast [class*="card"] {
+  border: 2px solid var(--border-color) !important;
+  background-color: var(--background-color) !important;
+}
+
+/* Skip link */
+.a11y-high-contrast .skip-to-content {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+  padding: 0.5rem 1rem !important;
+  position: absolute !important;
+  top: -40px !important;
+  left: 0 !important;
+  z-index: 9999 !important;
+  transition: top 0.3s !important;
+}
+
+.a11y-high-contrast .skip-to-content:focus {
+  top: 0 !important;
+}
+
+/* Badges */
+.a11y-high-contrast .badge,
+.a11y-high-contrast [class*="badge"] {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Toasts and notifications */
+.a11y-high-contrast .toast,
+.a11y-high-contrast [class*="toast"] {
+  background-color: var(--secondary-color) !important;
+  color: #ffffff !important;
+  border: 2px solid var(--border-color) !important;
+}
+
+/* Disabled elements */
+.a11y-high-contrast [disabled],
+.a11y-high-contrast [aria-disabled="true"] {
+  opacity: 0.7 !important;
+  background-color: #e0e0e0 !important;
+  color: #555555 !important;
+}
+
+/* Improve visibility of icons */
+.a11y-high-contrast svg,
+.a11y-high-contrast img[role="presentation"] {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* Ensure proper contrast for primary and secondary colors */
+.a11y-high-contrast .bg-primary,
+.a11y-high-contrast [class*="bg-primary"] {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+}
+
+.a11y-high-contrast .bg-secondary,
+.a11y-high-contrast [class*="bg-secondary"] {
+  background-color: var(--secondary-color) !important;
+  color: #ffffff !important;
+}
+
+/* Ensure proper contrast for text on colored backgrounds */
+.a11y-high-contrast .text-primary,
+.a11y-high-contrast [class*="text-primary"] {
+  color: var(--primary-color) !important;
+}
+
+.a11y-high-contrast .text-secondary,
+.a11y-high-contrast [class*="text-secondary"] {
+  color: var(--secondary-color) !important;
+}
+
+/* Ensure proper contrast for borders */
+.a11y-high-contrast .border,
+.a11y-high-contrast [class*="border"] {
+  border-color: var(--border-color) !important;
+}
